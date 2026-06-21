@@ -1,0 +1,19 @@
+{
+  "id": "vademecum-senasa",
+  "version": "0.1.1",
+  "apiVersion": "2.0",
+  "displayName": "Vademécum SENASA (Argentina)",
+  "entry": "dist/entry.js",
+  "runtime": "eager",
+  "contributes": {
+    "menus": [],
+    "views": [],
+    "repositories": [
+      {
+        "module": "./dist/repositories/catalog.repository.js",
+        "export": "CatalogRepository",
+        "prefix": "vademecum.catalog"
+      }
+    ]
+  }
+}
