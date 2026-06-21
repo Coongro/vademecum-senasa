@@ -21,6 +21,8 @@ import type {
 } from '../types/senasa-dto.js';
 
 export const SENASA_SOURCE_ID = 'senasa';
+/** País del padrón SENASA (ISO 3166-1 alpha-2). SENASA es el organismo AR. */
+export const SENASA_COUNTRY = 'AR';
 
 /** Id del provider que se estampa en cada producto mapeado. */
 function dedupe(values: Array<string | null | undefined>): string[] {
@@ -82,7 +84,9 @@ const NON_ACTIVE_COMPONENT = [
 function deriveKind(
   componentes?: SenasaComponentePorProducto[] | null
 ): CatalogProductDetail['kind'] {
-  const tipos = (componentes ?? []).map((c) => c.componente?.tipoComponente?.nombre?.toUpperCase() ?? '');
+  const tipos = (componentes ?? []).map(
+    (c) => c.componente?.tipoComponente?.nombre?.toUpperCase() ?? ''
+  );
   if (tipos.some((t) => /AGENTE ETIOL|ANTIGENO|ANTÍGENO|CEPA|VACUNA/.test(t))) return 'vaccine';
   if (tipos.some((t) => t.includes('PRINCIPIO ACTIVO'))) return 'medication';
   return 'other';
@@ -121,6 +125,7 @@ export function mapListItem(item: SenasaListItem): CatalogProductSummary {
     commercialName: item.nombreComercial?.trim() ?? '(sin nombre)',
     laboratory: item.nombreFirma?.trim() || undefined,
     source: SENASA_SOURCE_ID,
+    country: SENASA_COUNTRY,
   };
 }
 
@@ -142,6 +147,7 @@ export function mapDetail(detail: SenasaDetail, sourceId: string): CatalogProduc
     laboratory: firma?.firma?.nombre?.trim() || undefined,
     laboratoryTaxId: firma?.firma?.cuit?.trim() || undefined,
     source: SENASA_SOURCE_ID,
+    country: SENASA_COUNTRY,
     kind: deriveKind(detail.componentesPorProducto),
     composition: mapComposition(detail.componentesPorProducto),
     administrationRoutes: dedupe(

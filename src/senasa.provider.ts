@@ -11,12 +11,17 @@ import type {
   RegulatoryCatalogProvider,
 } from '@coongro/vademecum';
 
-import { mapDetail, mapListItem, SENASA_SOURCE_ID } from './mappers/senasa.mapper.js';
+import {
+  mapDetail,
+  mapListItem,
+  SENASA_SOURCE_ID,
+  SENASA_COUNTRY,
+} from './mappers/senasa.mapper.js';
 import { SenasaClient } from './senasa.client.js';
 
 export class SenasaProvider implements RegulatoryCatalogProvider {
   readonly id = SENASA_SOURCE_ID;
-  readonly country = 'AR';
+  readonly country = SENASA_COUNTRY;
   readonly label = 'SENASA';
 
   private readonly client = new SenasaClient();
