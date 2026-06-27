@@ -53,8 +53,13 @@ export interface SenasaComponentePorProducto {
 export interface SenasaDetail {
   id?: number;
   numeroInscripcion?: string | null;
-  /** Texto de indicaciones / acción terapéutica. */
+  /** Texto de indicaciones / acción terapéutica. A veces es "NO APLICA". */
   indicacionesYVias?: string | null;
+  /**
+   * Observaciones del producto. En muchos registros (varios biológicos) la
+   * descripción real vive acá cuando `indicacionesYVias` es "NO APLICA".
+   */
+  observaciones?: string | null;
   estadoProducto?: SenasaNamed | null;
   tipoProducto?: SenasaNamed | null;
   tipoPresentacion?: SenasaNamed | null;
