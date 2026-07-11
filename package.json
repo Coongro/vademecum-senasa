@@ -1,6 +1,6 @@
 {
   "name": "@coongro/vademecum-senasa",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "type": "module",
   "description": "Provider AR del vademécum: implementa el contrato RegulatoryCatalogProvider contra el padrón público de productos veterinarios de SENASA y mapea su DTO al modelo común. Se instala solo en tenants de Argentina.",
   "main": "dist/index.js",
