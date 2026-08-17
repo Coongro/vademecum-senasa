@@ -12,7 +12,11 @@
       {
         "module": "./dist/repositories/catalog.repository.js",
         "export": "CatalogRepository",
-        "prefix": "vademecum.catalog"
+        "prefix": "vademecum.catalog",
+        "actions": [
+          "search",
+          "getDetail"
+        ]
       }
     ]
   }
